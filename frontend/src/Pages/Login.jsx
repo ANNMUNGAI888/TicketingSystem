@@ -70,7 +70,7 @@ const Login = () => {
               Welcome to Clinical Systems Support
             </h1>
             <p className="text-lg leading-relaxed text-secondary">
-              Access the Wama Hospital IT Ticketing Hub. Please sign in to
+              Access the IT Ticketing Hub. Please sign in to
               manage high-priority system requests and technical documentation.
             </p>
           </div>
@@ -121,7 +121,7 @@ const Login = () => {
                     className="w-full rounded-lg border border-line bg-card py-3 pl-10 pr-4 text-sm text-text transition-all placeholder:text-subtle focus:border-primary focus:outline-none focus:ring-2 focus:ring-brand-soft"
                     id="email"
                     name="email"
-                    placeholder="staff@wamahospital.org"
+                    placeholder="staff@hospital.org"
                     type="email"
                     value={formik.values.email}
                     onChange={formik.handleChange}
