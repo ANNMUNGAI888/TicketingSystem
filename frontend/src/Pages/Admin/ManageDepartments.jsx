@@ -25,7 +25,7 @@ const ManageDepartments = () => {
   const fetchDepartments = async () => {
     try {
       setLoading(true);
-      const response = await axios.get("http://localhost:5000/department");
+      const response = await axios.get("/department");
       setDepartments(response.data);
     } catch (error) {
       toast.error("Failed to load departments");
@@ -59,12 +59,12 @@ const ManageDepartments = () => {
 
     try {
       if (isCreating) {
-        await axios.post("http://localhost:5000/department", {
+        await axios.post("/department", {
           name: editName,
         });
         toast.success("Department created successfully!");
       } else {
-        await axios.put(`http://localhost:5000/department/${editingDepartment.id}`, {
+        await axios.put(`/department/${editingDepartment.id}`, {
           name: editName,
         });
         toast.success("Department updated successfully!");
@@ -83,7 +83,7 @@ const ManageDepartments = () => {
     }
 
     try {
-      await axios.delete(`http://localhost:5000/department/${departmentId}`);
+      await axios.delete(`/department/${departmentId}`);
       toast.success("Department deleted successfully!");
       fetchDepartments();
     } catch (error) {

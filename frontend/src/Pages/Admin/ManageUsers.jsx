@@ -32,7 +32,7 @@ const ManageUsers = () => {
   const fetchUsers = async () => {
     try {
       setLoading(true);
-      const response = await axios.get("http://localhost:5000/api/user");
+      const response = await axios.get("/api/user");
       setUsers(response.data);
     } catch (error) {
       const status = error.response?.status;
@@ -49,7 +49,7 @@ const ManageUsers = () => {
 
   const fetchDepartments = async () => {
     try {
-      const response = await axios.get("http://localhost:5000/department");
+      const response = await axios.get("/department");
       setDepartments(response.data);
     } catch (error) {
       console.error("Failed to fetch departments", error);
@@ -91,7 +91,7 @@ const ManageUsers = () => {
         payload.password = editPassword;
       }
 
-      await axios.put(`http://localhost:5000/api/user/${editingUser.id}`, payload);
+      await axios.put(`/api/user/${editingUser.id}`, payload);
       toast.success("User updated successfully!");
       setEditingUser(null);
       fetchUsers();
@@ -106,7 +106,7 @@ const ManageUsers = () => {
     }
 
     try {
-      await axios.delete(`http://localhost:5000/api/user/${userId}`);
+      await axios.delete(`/api/user/${userId}`);
       toast.success("User deleted successfully!");
       fetchUsers();
     } catch (error) {

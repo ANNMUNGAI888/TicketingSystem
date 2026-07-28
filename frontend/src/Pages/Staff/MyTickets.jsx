@@ -104,7 +104,7 @@ const MyTickets = () => {
   const fetchTickets = async () => {
     setLoading(true);
     try {
-      const response = await axios.get("http://localhost:5000/ticket");
+      const response = await axios.get("/ticket");
       const processedTickets = response.data.map((ticket) => {
         const date = new Date(ticket.createdAt);
         const createdAt = date.toLocaleDateString("en-US", {

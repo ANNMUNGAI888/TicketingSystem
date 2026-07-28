@@ -66,7 +66,7 @@ const Dashboard = () => {
   const fetchTickets = async () => {
     setLoading(true);
     try {
-      const response = await axios.get(`http://localhost:5000/ticket`);
+      const response = await axios.get(`/ticket`);
       const processedTickets = response.data.map((ticket) => {
         // Format date and time
         const date = new Date(ticket.createdAt);
@@ -138,7 +138,7 @@ const Dashboard = () => {
   const fetchMetrics = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:5000/ticket/metrics`,
+        `/ticket/metrics`,
       );
       setTicketMetrics(response.data);
     } catch (error) {
@@ -179,7 +179,7 @@ const Dashboard = () => {
 
   const handleUpdateTicket = async (ticketId) => {
     try {
-      await axios.put(`http://localhost:5000/ticket/${ticketId}`, {
+      await axios.put(`/ticket/${ticketId}`, {
         status: modalStatus,
         resolutionNote: modalResolution,
       });

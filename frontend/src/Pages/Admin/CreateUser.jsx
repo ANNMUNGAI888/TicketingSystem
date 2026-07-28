@@ -44,7 +44,7 @@ const CreateUser = () => {
     const fetchDepartments = async () => {
       try {
         setLoadingDepartments(true);
-        const response = await axios.get("http://localhost:5000/department");
+        const response = await axios.get("/department");
         setDepartments(response.data);
       } catch (error) {
         console.error("Failed to fetch departments:", error);
@@ -78,7 +78,7 @@ const CreateUser = () => {
         if (values.department) {
           payload.department = values.department;
         }
-        await axios.post("http://localhost:5000/api/user/create", payload);
+        await axios.post("/api/user/create", payload);
         toast.success("User created successfully!");
         resetForm();
       } catch (error) {

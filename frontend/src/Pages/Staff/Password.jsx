@@ -31,7 +31,7 @@ const Password = () => {
   useEffect(() => {
     const fetchUser = async () => {
       try {
-        const response = await axios.get("http://localhost:5000/api/user/me");
+        const response = await axios.get("/api/user/me");
         setUser(response.data);
         if (response.data.role === "IT_ADMIN") {
           navigate("/dashboard");
@@ -103,7 +103,7 @@ const Password = () => {
     setIsSubmitting(true);
 
     try {
-      await axios.put("http://localhost:5000/api/user/change-password", {
+      await axios.put("/api/user/change-password", {
         currentPassword: values.currentPassword,
         newPassword: values.newPassword,
         confirmPassword: values.confirmPassword,

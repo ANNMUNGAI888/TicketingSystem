@@ -49,7 +49,7 @@ const RaiseTicket = () => {
         });
 
         console.log("Submitting ticket with data:", { title: values.title, category: values.category, priority: values.priority });
-        const response = await axios.post("http://localhost:5000/ticket", formData, {
+        const response = await axios.post("/ticket", formData, {
           headers: {
             'Content-Type': 'multipart/form-data'
           }
