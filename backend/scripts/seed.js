@@ -4,6 +4,17 @@ import prisma from "../lib/prisma.js";
 async function main() {
   console.log("Starting database seeding...");
 
+  // Create ticket number sequence if it doesn't exist
+  console.log("Creating ticket number sequence...");
+  try {
+    await prisma.$executeRaw`
+      CREATE SEQUENCE IF NOT EXISTS ticket_number_seq START 1
+    `;
+    console.log("Ticket number sequence created or already exists.");
+  } catch (error) {
+    console.error("Error creating sequence:", error);
+  }
+
   // Seed admin user
   console.log("Seeding admin user...");
   const adminEmail = "admin@ticketsystem.com";
