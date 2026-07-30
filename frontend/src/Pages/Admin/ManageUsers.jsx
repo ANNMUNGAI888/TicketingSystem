@@ -136,81 +136,94 @@ const ManageUsers = () => {
               description="There are no users in the system yet. Create a new user account to get started."
             />
           ) : (
-            <div className="overflow-x-auto">
-              <table className="w-full border-collapse text-left">
-                <thead className="border-b border-line bg-card-soft">
-                  <tr>
-                    {["Full Name", "Email", "Role", "Department", "Actions"].map((heading) => (
-                      <th
-                        className={`px-6 py-4 text-xs font-semibold uppercase tracking-wider text-muted ${
-                          heading === "Actions" ? "text-right" : ""
-                        }`}
-                        key={heading}
-                      >
-                        {heading}
-                      </th>
-                    ))}
-                  </tr>
-                </thead>
-                <tbody className="divide-y divide-line">
-                  {users.map((user) => (
-                    <tr className="transition-colors hover:bg-bg-soft" key={user.id}>
-                      <td className="px-6 py-4">
-                        <div className="flex items-center gap-3">
-                          <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
-                            <User className="text-primary h-4 w-4" />
-                          </div>
-                          <span className="text-sm font-semibold text-text">
-                            {user.fullName}
-                          </span>
-                        </div>
-                      </td>
-                      <td className="px-6 py-4 text-sm text-text">
-                        <div className="flex items-center gap-2 text-muted">
-                          <Mail className="h-4 w-4" />
-                          <span>{user.email}</span>
-                        </div>
-                      </td>
-                      <td className="px-6 py-4 text-sm">
-                        <span
-                          className={`inline-flex rounded-full px-2.5 py-1 text-xs font-semibold uppercase tracking-wider ${
-                            user.role === "IT_ADMIN"
-                              ? "bg-danger-soft text-danger-dark border border-danger/20"
-                              : "bg-primary-soft text-primary border border-primary/20"
+            <>
+              <div className="divide-y divide-line md:hidden">
+                {users.map((user) => (
+                  <UserCard
+                    key={user.id}
+                    user={user}
+                    onEdit={handleEditClick}
+                    onDelete={handleDeleteUser}
+                  />
+                ))}
+              </div>
+
+              <div className="hidden overflow-x-auto md:block">
+                <table className="w-full border-collapse text-left">
+                  <thead className="border-b border-line bg-card-soft">
+                    <tr>
+                      {["Full Name", "Email", "Role", "Department", "Actions"].map((heading) => (
+                        <th
+                          className={`px-6 py-4 text-xs font-semibold uppercase tracking-wider text-muted ${
+                            heading === "Actions" ? "text-right" : ""
                           }`}
+                          key={heading}
                         >
-                          {user.role}
-                        </span>
-                      </td>
-                      <td className="px-6 py-4 text-sm text-muted">
-                        <div className="flex items-center gap-2">
-                          <Building className="h-4 w-4 text-subtle" />
-                          <span>{user.department?.name || "N/A"}</span>
-                        </div>
-                      </td>
-                      <td className="px-6 py-4 text-right">
-                        <div className="flex items-center justify-end gap-2">
-                          <button
-                            onClick={() => handleEditClick(user)}
-                            className="p-2 rounded-lg text-primary hover:bg-primary/5 transition-colors cursor-pointer"
-                            title="Edit User"
-                          >
-                            <Pencil className="h-4 w-4" />
-                          </button>
-                          <button
-                            onClick={() => handleDeleteUser(user.id)}
-                            className="p-2 rounded-lg text-danger hover:bg-danger/5 transition-colors cursor-pointer"
-                            title="Delete User"
-                          >
-                            <Trash2 className="h-4 w-4" />
-                          </button>
-                        </div>
-                      </td>
+                          {heading}
+                        </th>
+                      ))}
                     </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
+                  </thead>
+                  <tbody className="divide-y divide-line">
+                    {users.map((user) => (
+                      <tr className="transition-colors hover:bg-bg-soft" key={user.id}>
+                        <td className="px-6 py-4">
+                          <div className="flex items-center gap-3">
+                            <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
+                              <User className="text-primary h-4 w-4" />
+                            </div>
+                            <span className="text-sm font-semibold text-text">
+                              {user.fullName}
+                            </span>
+                          </div>
+                        </td>
+                        <td className="px-6 py-4 text-sm text-text">
+                          <div className="flex items-center gap-2 text-muted">
+                            <Mail className="h-4 w-4" />
+                            <span>{user.email}</span>
+                          </div>
+                        </td>
+                        <td className="px-6 py-4 text-sm">
+                          <span
+                            className={`inline-flex rounded-full px-2.5 py-1 text-xs font-semibold uppercase tracking-wider ${
+                              user.role === "IT_ADMIN"
+                                ? "bg-danger-soft text-danger-dark border border-danger/20"
+                                : "bg-primary-soft text-primary border border-primary/20"
+                            }`}
+                          >
+                            {user.role}
+                          </span>
+                        </td>
+                        <td className="px-6 py-4 text-sm text-muted">
+                          <div className="flex items-center gap-2">
+                            <Building className="h-4 w-4 text-subtle" />
+                            <span>{user.department?.name || "N/A"}</span>
+                          </div>
+                        </td>
+                        <td className="px-6 py-4 text-right">
+                          <div className="flex items-center justify-end gap-2">
+                            <button
+                              onClick={() => handleEditClick(user)}
+                              className="p-2 rounded-lg text-primary hover:bg-primary/5 transition-colors cursor-pointer"
+                              title="Edit User"
+                            >
+                              <Pencil className="h-4 w-4" />
+                            </button>
+                            <button
+                              onClick={() => handleDeleteUser(user.id)}
+                              className="p-2 rounded-lg text-danger hover:bg-danger/5 transition-colors cursor-pointer"
+                              title="Delete User"
+                            >
+                              <Trash2 className="h-4 w-4" />
+                            </button>
+                          </div>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </>
           )}
         </div>
 
@@ -337,5 +350,64 @@ const ManageUsers = () => {
     </div>
   );
 };
+
+const UserCard = ({ user, onEdit, onDelete }) => (
+  <article className="p-4 flex flex-col gap-3">
+    <div className="flex items-start gap-3">
+      <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
+        <User className="text-primary h-5 w-5" />
+      </div>
+      <div className="min-w-0 flex-1">
+        <h2 className="text-[15px] font-semibold leading-5 text-text">
+          {user.fullName}
+        </h2>
+        <div className="mt-1 flex items-center gap-2 text-muted">
+          <Mail className="h-3.5 w-3.5" />
+          <p className="text-xs truncate">{user.email}</p>
+        </div>
+      </div>
+      <span
+        className={`ml-auto shrink-0 whitespace-nowrap rounded-full px-2.5 py-1 text-[10px] font-semibold uppercase tracking-wider ${
+          user.role === "IT_ADMIN"
+            ? "bg-danger-soft text-danger-dark border border-danger/20"
+            : "bg-primary-soft text-card border border-primary/20"
+        }`}
+      >
+        {user.role}
+      </span>
+    </div>
+
+    <div className="mt-4 grid grid-cols-2 gap-2">
+      <div className="rounded-lg bg-bg-soft px-3 py-3">
+        <p className="text-[10px] font-semibold uppercase tracking-wider text-subtle">
+          Department
+        </p>
+        <div className="mt-1 flex items-center gap-1.5">
+          <Building className="h-3 w-3 text-subtle" />
+          <span className="text-xs font-medium text-text">
+            {user.department?.name || "N/A"}
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <div className="mt-3 flex gap-2">
+      <button
+        onClick={() => onEdit(user)}
+        className="flex flex-1 items-center justify-center gap-2 rounded-lg border border-primary/20 bg-primary px-3 py-2.5 text-sm font-semibold text-white shadow-sm transition-all duration-200 hover:bg-primary-soft cursor-pointer"
+      >
+        <Pencil className="h-4 w-4" />
+        Edit
+      </button>
+      <button
+        onClick={() => onDelete(user.id)}
+        className="flex items-center justify-center gap-2 rounded-lg border border-danger/20 bg-danger px-3 py-2.5 text-sm font-semibold text-white shadow-sm transition-all duration-200 hover:bg-danger/80 cursor-pointer"
+      >
+        <Trash2 className="h-4 w-4" />
+        Delete
+      </button>
+    </div>
+  </article>
+);
 
 export default ManageUsers;
