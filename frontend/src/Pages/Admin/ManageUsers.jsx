@@ -154,9 +154,8 @@ const ManageUsers = () => {
                     <tr>
                       {["Full Name", "Email", "Role", "Department", "Actions"].map((heading) => (
                         <th
-                          className={`px-6 py-4 text-xs font-semibold uppercase tracking-wider text-muted ${
-                            heading === "Actions" ? "text-right" : ""
-                          }`}
+                          className={`px-6 py-4 text-xs font-semibold uppercase tracking-wider text-muted ${heading === "Actions" ? "text-right" : ""
+                            }`}
                           key={heading}
                         >
                           {heading}
@@ -185,11 +184,10 @@ const ManageUsers = () => {
                         </td>
                         <td className="px-6 py-4 text-sm">
                           <span
-                            className={`inline-flex rounded-full px-2.5 py-1 text-xs font-semibold uppercase tracking-wider ${
-                              user.role === "IT_ADMIN"
+                            className={`inline-flex rounded-full px-2.5 py-1 text-xs font-semibold uppercase tracking-wider ${user.role === "IT_ADMIN"
                                 ? "bg-danger-soft text-danger-dark border border-danger/20"
-                                : "bg-primary-soft text-primary border border-primary/20"
-                            }`}
+                                : "bg-primary-soft text-white border border-primary/20"
+                              }`}
                           >
                             {user.role}
                           </span>
@@ -367,27 +365,24 @@ const UserCard = ({ user, onEdit, onDelete }) => (
         </div>
       </div>
       <span
-        className={`ml-auto shrink-0 whitespace-nowrap rounded-full px-2.5 py-1 text-[10px] font-semibold uppercase tracking-wider ${
-          user.role === "IT_ADMIN"
+        className={`ml-auto shrink-0 whitespace-nowrap rounded-full px-2.5 py-1 text-[10px] font-semibold uppercase tracking-wider ${user.role === "IT_ADMIN"
             ? "bg-danger-soft text-danger-dark border border-danger/20"
             : "bg-primary-soft text-card border border-primary/20"
-        }`}
+          }`}
       >
         {user.role}
       </span>
     </div>
 
-    <div className="mt-4 grid grid-cols-2 gap-2">
-      <div className="rounded-lg bg-bg-soft px-3 py-3">
-        <p className="text-[10px] font-semibold uppercase tracking-wider text-subtle">
-          Department
-        </p>
-        <div className="mt-1 flex items-center gap-1.5">
-          <Building className="h-3 w-3 text-subtle" />
-          <span className="text-xs font-medium text-text">
-            {user.department?.name || "N/A"}
-          </span>
-        </div>
+    <div className="rounded-lg bg-bg-soft px-3 py-3">
+      <p className="text-[10px] font-semibold uppercase tracking-wider text-subtle">
+        Department
+      </p>
+      <div className="mt-1 flex items-center gap-1.5">
+        <Building className="h-3 w-3 text-subtle" />
+        <span className="text-xs font-medium text-text">
+          {user.department?.name || "N/A"}
+        </span>
       </div>
     </div>
 
@@ -396,14 +391,14 @@ const UserCard = ({ user, onEdit, onDelete }) => (
         onClick={() => onEdit(user)}
         className="flex flex-1 items-center justify-center gap-2 rounded-lg border border-primary/20 bg-primary px-3 py-2.5 text-sm font-semibold text-white shadow-sm transition-all duration-200 hover:bg-primary-soft cursor-pointer"
       >
-        <Pencil className="h-4 w-4" />
+        <Pencil size={16} />
         Edit
       </button>
       <button
         onClick={() => onDelete(user.id)}
-        className="flex items-center justify-center gap-2 rounded-lg border border-danger/20 bg-danger px-3 py-2.5 text-sm font-semibold text-white shadow-sm transition-all duration-200 hover:bg-danger/80 cursor-pointer"
+        className="flex flex-1 items-center justify-center gap-2 rounded-lg border border-danger/20 bg-danger px-3 py-2.5 text-sm font-semibold text-white shadow-sm transition-all duration-200 hover:bg-danger/80 cursor-pointer"
       >
-        <Trash2 className="h-4 w-4" />
+        <Trash2 size={16} />
         Delete
       </button>
     </div>

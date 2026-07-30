@@ -812,7 +812,7 @@ const TicketCard = ({ ticket, onOpenModal, onUpdateTicket }) => (
         <p className="text-[10px] font-semibold uppercase tracking-wider text-subtle">
           Created
         </p>
-        <div className="flex flex-row justify-between items-center">
+        <div className="flex flex-col gap-1 md:flex-row md:justify-between md:items-center">
           <p className="mt-1 text-xs font-medium text-text">
             {ticket.createdAt}
           </p>
@@ -824,14 +824,14 @@ const TicketCard = ({ ticket, onOpenModal, onUpdateTicket }) => (
     <div className="mt-3 grid grid-cols-2 gap-2">
       <button
         onClick={onOpenModal}
-        className="flex items-center justify-center gap-2 rounded-xl border border-primary/20 bg-primary px-3 py-2.5 text-sm font-semibold text-white shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:bg-primary-soft hover:shadow-md"
+        className="flex items-center justify-center gap-1 md:gap-2 rounded-xl border border-primary/20 bg-primary px-2 md:px-3 py-2 md:py-2.5 text-xs md:text-sm font-semibold text-white shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:bg-primary-soft hover:shadow-md"
       >
         <Eye size={16} />
         <span>View Details</span>
       </button>
       <button
         onClick={onUpdateTicket}
-        className="flex items-center justify-center gap-2 rounded-xl border border-line bg-card px-3 py-2.5 text-sm font-semibold text-text shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:border-primary/20 hover:text-primary hover:shadow-md"
+        className="flex items-center justify-center gap-1 md:gap-2 rounded-xl border border-line bg-card px-2 md:px-3 py-2 md:py-2.5 text-xs md:text-sm font-semibold text-text shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:border-primary/20 hover:text-primary hover:shadow-md"
       >
         <Pencil size={16} />
         <span>Update Ticket</span>
