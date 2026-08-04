@@ -19,7 +19,7 @@ app.use(
 );
 
 app.get("/health", (req, res) => {
-  res.status(200).json({ status: "ok" });
+  res.status(200).send("Server is awake");
 });
 
 //routes
