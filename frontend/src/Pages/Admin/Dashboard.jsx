@@ -1,37 +1,36 @@
-import React, { useEffect } from "react";
-import { useState } from "react";
-// import { Eye, Edit, Filter, AlertCircle, CheckCircle, Inbox, AlertTriangle, Clock, Check, Plus } from "lucide-react";
+import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import Sidebar from "../../Components/Sidebar";
-import EmptyState from "../../Components/EmptyState";
+import { toast } from "sonner";
+import axios from "axios";
 import {
   Inbox,
   AlertTriangle,
   Clock,
-  CheckCircle2,
-  Filter,
-  AlertCircle,
-  Eye,
-  Edit,
   CheckCircle,
+  Filter,
+  Search,
+  X,
   Pencil,
+  MessageCircle,
+  Save,
+  UserCheck,
+  Eye,
   ChevronLeft,
   ChevronRight,
-  X,
   ChevronDown,
   ZoomIn,
   User,
   Mail,
   Phone,
   MapPin,
-  MessageCircle,
-  Save,
-  UserCheck,
 } from "lucide-react";
-import { toast } from "sonner";
-import axios from "axios";
 import { HashLoader } from "react-spinners";
+import { SidebarProvider, useSidebar } from "../../context/SidebarContext";
+import EmptyState from "../../Components/EmptyState";
 
 const Dashboard = () => {
+  const { isCollapsed } = useSidebar();
   const [tickets, setTickets] = useState([]);
   const [selectedTicket, setSelectedTicket] = useState(null);
   const [editingTicket, setEditingTicket] = useState(null);
@@ -203,10 +202,9 @@ const Dashboard = () => {
 
   return (
     <div className="min-h-screen">
-      <div className="min-h-screen">
-        <Sidebar />
-        <main className="flex-1 flex flex-col gap-5 p-10 overflow-y-auto bg-bg lg:pl-80 xl:pl-72">
-          <div className="flex flex-col gap-2 md:flex-row md:justify-between md:items-end py-3">
+      <Sidebar />
+      <main className={`flex flex-col  gap-5 p-10 bg-bg transition-all duration-300 w-full ${isCollapsed ? 'md:pl-25' : 'md:pl-69'}`}>
+          <div className="flex flex-col gap-2 md:flex-row md:justify-between md:items-center py-3">
             <div>
               <h1 className="text-3xl font-bold text-text">
                 IT Command Center
@@ -771,7 +769,6 @@ const Dashboard = () => {
           )}
         </main>
       </div>
-    </div>
   );
 };
 

@@ -1,18 +1,13 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
-import {
-  AlertCircle,
-  Eye,
-  EyeOff,
-  Info,
-  ShieldCheck,
-  UserPlus,
-} from "lucide-react";
+import { useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import { toast } from "sonner";
-import { ClipLoader, HashLoader } from "react-spinners";
 import Sidebar from "../../Components/Sidebar";
+import { toast } from "sonner";
+import axios from "axios";
+import { HashLoader, ClipLoader } from "react-spinners";
+import { SidebarProvider, useSidebar } from "../../context/SidebarContext";
+import { Eye, EyeOff, Info, AlertCircle, UserPlus } from "lucide-react";
 
 // Validation schema
 const validationSchema = Yup.object({
@@ -34,6 +29,7 @@ const validationSchema = Yup.object({
 });
 
 const CreateUser = () => {
+  const { isCollapsed } = useSidebar();
   const [showPassword, setShowPassword] = useState(false);
   const [departments, setDepartments] = useState([]);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -95,7 +91,7 @@ const CreateUser = () => {
   return (
     <div className="min-h-screen">
       <Sidebar />
-      <main className="flex p-10 min-h-screen items-center justify-center px-4 py-12 lg:pl-80 xl:pl-72">
+      <main className={`flex p-10 min-h-screen items-center justify-center px-4 py-12 transition-all duration-300 ${isCollapsed ? 'lg:pl-20' : 'lg:pl-64'}`}>
         <div className="w-full max-w-2xl">
           <div className="mb-6">
             <h1 className="font-heading text-3xl font-bold text-text">
