@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { Menu, ChevronLeft, ChevronRight, Home, Users, Building, LogOut } from "lucide-react";
+import { useSidebar } from "../context/SidebarContext";
 
 export default function Sidebar() {
   const handleLogout = () => {
@@ -8,12 +9,8 @@ export default function Sidebar() {
     localStorage.removeItem("user");
     window.location.href = "/";
   };
-  const [isCollapsed, setIsCollapsed] = useState(false);
+  const { isCollapsed, toggleSidebar } = useSidebar();
   const [isMobileOpen, setIsMobileOpen] = useState(false);
-
-  const toggleSidebar = () => {
-    setIsCollapsed(!isCollapsed);
-  };
 
   const toggleMobileMenu = () => {
     setIsMobileOpen((value) => !value);
@@ -43,7 +40,7 @@ export default function Sidebar() {
           </div>
           <h1
             className={`origin-left font-bold text-xl duration-200 whitespace-nowrap ${
-              isCollapsed ? "scale-0 opacity-0" : "scale-100 opacity-100"
+              isCollapsed && !isMobileOpen ? "scale-0 opacity-0" : "scale-100 opacity-100"
             }`}
           >
             TicketSystem
@@ -63,7 +60,7 @@ export default function Sidebar() {
               </div>
               <span
                 className={`whitespace-nowrap transition-all duration-200 ${
-                  isCollapsed
+                  isCollapsed && !isMobileOpen
                     ? "w-0 opacity-0 overflow-hidden"
                     : "w-auto opacity-100"
                 }`}
@@ -81,7 +78,7 @@ export default function Sidebar() {
             U
           </div>
           <div
-            className={`duration-200 flex flex-col ${isCollapsed ? "hidden" : "block"}`}
+            className={`duration-200 flex flex-col ${isCollapsed && !isMobileOpen ? "hidden" : "block"}`}
           >
             <span className="text-sm font-medium">Admin User</span>
             <span className="text-xs text-gray-400">admin@ticketsystem.com</span>
@@ -96,7 +93,7 @@ export default function Sidebar() {
           </div>
           <span
             className={`whitespace-nowrap transition-all duration-200 ${
-              isCollapsed ? "w-0 opacity-0 overflow-hidden" : "w-auto opacity-100"
+              isCollapsed && !isMobileOpen ? "w-0 opacity-0 overflow-hidden" : "w-auto opacity-100"
             }`}
           >
             Log Out

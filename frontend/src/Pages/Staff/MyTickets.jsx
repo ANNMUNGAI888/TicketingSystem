@@ -652,7 +652,7 @@ const TicketCard = ({ ticket, onOpenModal }) => (
         <p className="text-[10px] font-semibold uppercase tracking-wider text-subtle">
           Created
         </p>
-        <div className="flex flex-row justify-between items-center">
+        <div className="flex flex-col gap-1 md:flex-row justify-between md:items-center">
           <p className="mt-1 text-xs font-medium text-text">
             {ticket.createdAt}
           </p>

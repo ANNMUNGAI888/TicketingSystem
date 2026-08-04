@@ -12,8 +12,10 @@ import {
 import Sidebar from "../../Components/Sidebar";
 import EmptyState from "../../Components/EmptyState";
 import { HashLoader } from "react-spinners";
+import { SidebarProvider, useSidebar } from "../../context/SidebarContext";
 
 const ManageDepartments = () => {
+  const { isCollapsed } = useSidebar();
   const [departments, setDepartments] = useState([]);
   const [editingDepartment, setEditingDepartment] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -100,7 +102,7 @@ const ManageDepartments = () => {
   return (
     <div className="min-h-screen bg-bg">
       <Sidebar />
-      <main className="flex-1 flex flex-col gap-5 p-10 overflow-y-auto bg-bg lg:pl-80 xl:pl-72">
+      <main className={`flex-1 flex flex-col gap-5 p-10 overflow-y-auto bg-bg transition-all duration-300 ${isCollapsed ? 'lg:pl-25' : 'lg:pl-69'}`}>
         <div className="flex flex-col gap-2 py-3 md:flex-row md:justify-between md:items-end">
           <div>
             <h1 className="text-3xl font-bold text-text">Department Administration</h1>
